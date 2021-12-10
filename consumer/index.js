@@ -1,17 +1,28 @@
-import Kafka from 'node-rdkafka';
-import eventType from '../eventType.js';
+console.log('Consumer');
 
-var consumer = new Kafka.KafkaConsumer({
-  'group.id': 'kafka',
-  'metadata.broker.list': 'localhost:9092',
-}, {});
+const { Kafka } = require('kafkajs');
 
-consumer.connect();
-
-consumer.on('ready', () => {
-  console.log('consumer ready..')
-  consumer.subscribe(['test']);
-  consumer.consume();
-}).on('data', function(data) {
-  console.log(`received message: ${eventType.fromBuffer(data.value)}`);
+const kafka = new Kafka({
+  clientId: 'my-app',
+  brokers: ['localhost:9092']
 });
+
+const consumer = kafka.consumer({ groupId: 'app1' });
+
+const run = async () => {
+  // Consuming
+  await consumer.connect();
+  await consumer.subscribe({ topic: 'test', fromBeginning: true });
+
+  await consumer.run({
+    eachMessage: async ({ topic, partition, message }) => {
+      console.log({
+        partition,
+        offset: message.offset,
+        value: message.value.toString()
+      });
+    }
+  });
+};
+
+run().catch(console.error);

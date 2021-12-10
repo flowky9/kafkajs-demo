@@ -1,17 +1,25 @@
 {
-  "name": "node-kafka-poc",
-  "type": "module",
+  "name": "kafka-practice",
   "version": "1.0.0",
-  "description": "",
+  "description": "Created for [this YouTube tutorial](https://www.youtube.com/watch?v=EiDLKECLcZw).",
   "main": "index.js",
   "scripts": {
     "start:producer": "node producer/index.js",
     "start:consumer": "node consumer/index.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kriscfoster/node-kafka-producer-consumer.git"
+  },
+  "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kriscfoster/node-kafka-producer-consumer/issues"
+  },
+  "homepage": "https://github.com/kriscfoster/node-kafka-producer-consumer#readme",
   "dependencies": {
-    "avsc": "^5.6.2",
-    "node-rdkafka": "^2.10.1"
+    "avsc": "^5.7.3",
+    "kafkajs": "^1.15.0"
   }
 }

@@ -8,13 +8,15 @@ A kafka producer/consumer proof of concept using node.
 
 ## Prerequisites
 
-* `node`
-* `docker`
+- `node`
+- `docker`
 
 ## Running locally
 
-* `npm install` - installs npm dependencies.
-* `./scripts/start-kafka.sh` - starts kafka inside docker container.
-* `./scripts/create-topic.sh` - creates kafka topic.
-* `npm run start:producer` - starts producer.
-* `npm run start:consumer` - starts consumer.
+- `npm install` - installs npm dependencies.
+- `./scripts/start-kafka.sh` - starts kafka inside docker container.
+- `./scripts/create-topic.sh` - creates kafka topic.
+- `npm run start:producer` - starts producer.
+- `npm run start:consumer` - starts consumer.
+
+- `docker exec -it kafka /opt/bitnami/kafka/bin/kafka-topics.sh --create --partitions 1 --replication-factor 1 --topic test --bootstrap-server localhost:9092` - Create topic
